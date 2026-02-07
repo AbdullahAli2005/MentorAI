@@ -34,6 +34,15 @@ export default async function Header() {
             className="h-12 py-1 w-auto object-contain"
           />
         </Link>
+        {/* <Link href="/" className="flex items-center gap-1 select-none">
+          <span className="text-xl md:text-2xl font-extrabold tracking-tight">
+            <span className="text-foreground">Intelli</span>
+            <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+              Career
+            </span>
+          </span>
+        </Link> */}
+
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-2 md:space-x-4">

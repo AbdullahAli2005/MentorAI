@@ -51,9 +51,20 @@ model Assessment {
 
 model Resume {
   id          String    @id @default(cuid())
-  userId      String    @unique    // One resume per user
+  userId      String    @unique
   user        User      @relation(fields: [userId], references: [id])
-  content     String    @db.Text // Markdown content
+  
+  // NEW - store structured data
+  contactInfo Json?     
+  summary     String?   @db.Text
+  skills      String?   @db.Text
+  experience  Json?     // array of objects
+  education   Json?     
+  projects    Json?     
+  
+  // optional: keep raw markdown as fallback / for quick preview
+  markdown    String?   @db.Text
+  
   atsScore    Float?
   feedback    String?
   createdAt   DateTime  @default(now())

@@ -59,9 +59,17 @@ export default function ResumeBuilder({ initialContent }) {
   // Watch form fields for preview updates
   const formValues = watch();
 
+  // useEffect(() => {
+  //   if (initialContent) setActiveTab("preview");
+  // }, [initialContent]);
   useEffect(() => {
-    if (initialContent) setActiveTab("preview");
-  }, [initialContent]);
+  if (initialContent) {
+    // If you already have markdown-only resume, keep it for now
+    setPreviewContent(initialContent);
+  }
+  // Later when you load structured resume:
+  // reset({ ...savedResumeFromDB })
+}, [initialContent]);
 
   // Update preview content when form values change
   useEffect(() => {
@@ -132,19 +140,36 @@ export default function ResumeBuilder({ initialContent }) {
     }
   };
 
-  const onSubmit = async (data) => {
-    try {
-      const formattedContent = previewContent
-        .replace(/\n/g, "\n") // Normalize newlines
-        .replace(/\n\s*\n/g, "\n\n") // Normalize multiple newlines to double newlines
-        .trim();
+  // const onSubmit = async (data) => {
+  //   try {
+  //     const formattedContent = previewContent
+  //       .replace(/\n/g, "\n") // Normalize newlines
+  //       .replace(/\n\s*\n/g, "\n\n") // Normalize multiple newlines to double newlines
+  //       .trim();
 
-      console.log(previewContent, formattedContent);
-      await saveResumeFn(previewContent);
-    } catch (error) {
-      console.error("Save error:", error);
-    }
-  };
+  //     console.log(previewContent, formattedContent);
+  //     await saveResumeFn(previewContent);
+  //   } catch (error) {
+  //     console.error("Save error:", error);
+  //   }
+  // };
+  const onSubmit = async (formData) => {
+  try {
+    const markdown = getCombinedContent();
+
+    await saveResumeFn({
+      contactInfo: formData.contactInfo,
+      summary:     formData.summary,
+      skills:      formData.skills,
+      experience:  formData.experience,
+      education:   formData.education,
+      projects:    formData.projects,
+      content:     markdown,          // optional fallback
+    });
+  } catch (error) {
+    console.error("Save error:", error);
+  }
+};
 
   return (
     <div data-color-mode="light" className="space-y-4">

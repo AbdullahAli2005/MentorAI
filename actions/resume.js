@@ -6,9 +6,41 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { revalidatePath } from "next/cache";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-export async function saveResume(content) {
+// export async function saveResume(content) {
+//   const { userId } = await auth();
+//   if (!userId) throw new Error("Unauthorized");
+
+//   const user = await db.user.findUnique({
+//     where: { clerkUserId: userId },
+//   });
+
+//   if (!user) throw new Error("User not found");
+
+//   try {
+//     const resume = await db.resume.upsert({
+//       where: {
+//         userId: user.id,
+//       },
+//       update: {
+//         content,
+//       },
+//       create: {
+//         userId: user.id,
+//         content,
+//       },
+//     });
+
+//     revalidatePath("/resume");
+//     return resume;
+//   } catch (error) {
+//     console.error("Error saving resume:", error);
+//     throw new Error("Failed to save resume");
+//   }
+// }
+// actions/resume.ts
+export async function saveResume(data) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
@@ -24,11 +56,24 @@ export async function saveResume(content) {
         userId: user.id,
       },
       update: {
-        content,
+        contactInfo: data.contactInfo,
+        summary:     data.summary,
+        skills:      data.skills,
+        experience:  data.experience,
+        education:   data.education,
+        projects:    data.projects,
+        // optional: keep markdown too
+        content:     data.content || null,
       },
       create: {
         userId: user.id,
-        content,
+        contactInfo: data.contactInfo,
+        summary:     data.summary,
+        skills:      data.skills,
+        experience:  data.experience,
+        education:   data.education,
+        projects:    data.projects,
+        content:     data.content || null,
       },
     });
 
@@ -39,7 +84,6 @@ export async function saveResume(content) {
     throw new Error("Failed to save resume");
   }
 }
-
 export async function getResume() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
