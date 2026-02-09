@@ -8,18 +8,21 @@ import Header from "@/components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "AI Career Coach",
-  description: "",
+  title: "MentorAI - AI-powered career mentor and resume builder",
+  description: "Your personal AI-powered career mentor and resume builder",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider appeaerance={{ baseTheme: "dark" }}>
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className}`}
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${inter.className}`}
         >
-        <ThemeProvider
+          <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
@@ -35,8 +38,8 @@ export default function RootLayout({ children }) {
               </div>
             </footer>
           </ThemeProvider>
-      </body>
-    </html>
-        </ClerkProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
