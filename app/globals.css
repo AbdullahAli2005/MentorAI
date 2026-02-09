@@ -170,3 +170,33 @@
   height: 100%;
   background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.9));
 }
+
+/* styles/resume-print.css */
+
+@media print {
+  body,
+  #resume-pdf,
+  #resume-pdf * {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;   /* Chrome */
+    print-color-adjust: exact;           /* newer standard */
+  }
+
+  /* Override dark mode classes (tailwind/shadcn common ones) */
+  .dark,
+  .bg-background,
+  .text-foreground,
+  .bg-muted,
+  .text-muted-foreground {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Make sure markdown content is readable */
+  .wmde-markdown,
+  .wmde-markdown * {
+    background: white !important;
+    color: #000 !important;
+  }
+}

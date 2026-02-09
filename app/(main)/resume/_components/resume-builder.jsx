@@ -24,6 +24,7 @@ import { useUser } from "@clerk/nextjs";
 import { entriesToMarkdown } from "@/app/lib/helper";
 import { resumeSchema } from "@/app/lib/schema";
 import html2pdf from "html2pdf.js/dist/html2pdf.min.js";
+// import "@/styles/global.css";  
 
 export default function ResumeBuilder({ initialContent }) {
   const [activeTab, setActiveTab] = useState("edit");
@@ -63,13 +64,13 @@ export default function ResumeBuilder({ initialContent }) {
   //   if (initialContent) setActiveTab("preview");
   // }, [initialContent]);
   useEffect(() => {
-  if (initialContent) {
-    // If you already have markdown-only resume, keep it for now
-    setPreviewContent(initialContent);
-  }
-  // Later when you load structured resume:
-  // reset({ ...savedResumeFromDB })
-}, [initialContent]);
+    if (initialContent) {
+      // If you already have markdown-only resume, keep it for now
+      setPreviewContent(initialContent);
+    }
+    // Later when you load structured resume:
+    // reset({ ...savedResumeFromDB })
+  }, [initialContent]);
 
   // Update preview content when form values change
   useEffect(() => {
@@ -106,18 +107,26 @@ export default function ResumeBuilder({ initialContent }) {
 
   const getCombinedContent = () => {
     const { summary, skills, experience, education, projects } = formValues;
+
+    const expMd = entriesToMarkdown(experience, "Work Experience");
+    const eduMd = entriesToMarkdown(education, "Education");
+    const projMd = entriesToMarkdown(projects, "Projects");
+
+    // console.log("experience markdown:", expMd);
+    // console.log("education markdown:  ", eduMd);
+    // console.log("projects markdown:   ", projMd);
+
     return [
       getContactMarkdown(),
       summary && `## Professional Summary\n\n${summary}`,
       skills && `## Skills\n\n${skills}`,
-      entriesToMarkdown(experience, "Work Experience"),
-      entriesToMarkdown(education, "Education"),
-      entriesToMarkdown(projects, "Projects"),
+      expMd,
+      eduMd,
+      projMd,
     ]
       .filter(Boolean)
       .join("\n\n");
   };
-
   const [isGenerating, setIsGenerating] = useState(false);
 
   const generatePDF = async () => {
@@ -140,36 +149,23 @@ export default function ResumeBuilder({ initialContent }) {
     }
   };
 
-  // const onSubmit = async (data) => {
-  //   try {
-  //     const formattedContent = previewContent
-  //       .replace(/\n/g, "\n") // Normalize newlines
-  //       .replace(/\n\s*\n/g, "\n\n") // Normalize multiple newlines to double newlines
-  //       .trim();
-
-  //     console.log(previewContent, formattedContent);
-  //     await saveResumeFn(previewContent);
-  //   } catch (error) {
-  //     console.error("Save error:", error);
-  //   }
-  // };
   const onSubmit = async (formData) => {
-  try {
-    const markdown = getCombinedContent();
+    try {
+      const markdown = getCombinedContent();
 
-    await saveResumeFn({
-      contactInfo: formData.contactInfo,
-      summary:     formData.summary,
-      skills:      formData.skills,
-      experience:  formData.experience,
-      education:   formData.education,
-      projects:    formData.projects,
-      content:     markdown,          // optional fallback
-    });
-  } catch (error) {
-    console.error("Save error:", error);
-  }
-};
+      await saveResumeFn({
+        contactInfo: formData.contactInfo,
+        summary: formData.summary,
+        skills: formData.skills,
+        experience: formData.experience,
+        education: formData.education,
+        projects: formData.projects,
+        content: markdown,          // optional fallback
+      });
+    } catch (error) {
+      console.error("Save error:", error);
+    }
+  };
 
   return (
     <div data-color-mode="light" className="space-y-4">

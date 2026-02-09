@@ -53,20 +53,21 @@ model Resume {
   id          String    @id @default(cuid())
   userId      String    @unique
   user        User      @relation(fields: [userId], references: [id])
-  
-  // NEW - store structured data
+
+  // Structured fields – exactly what your form is sending
   contactInfo Json?     
   summary     String?   @db.Text
   skills      String?   @db.Text
   experience  Json?     // array of objects
   education   Json?     
   projects    Json?     
-  
-  // optional: keep raw markdown as fallback / for quick preview
-  markdown    String?   @db.Text
-  
+
+  // optional markdown fallback
+  content     String?   @db.Text   // ← rename from markdown if you had it
+
   atsScore    Float?
   feedback    String?
+
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
