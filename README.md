@@ -1,36 +1,212 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MentorAI 🚀
 
-## Getting Started
+**Your Personal AI Career Coach**
+Build professional resumes, generate tailored cover letters, gain industry insights, and practice AI-powered mock interviews — all in one modern web application.
 
-First, run the development server:
+---
+
+## ✨ Core Features
+
+### 🔐 Secure Authentication
+
+* Clerk authentication (Google, Email, OAuth)
+* Protected routes with session handling
+
+### 📋 Smart Onboarding
+
+* Industry and sub-industry selection
+* Personalized user setup flow
+
+### 📊 Intelligent Dashboard
+
+* Real-time industry insights
+* Salary trend analysis
+* AI-generated recommendations (Google Gemini)
+
+### 📄 Resume Builder
+
+* Structured sections:
+
+  * Contact Information
+  * Professional Summary
+  * Skills
+  * Experience
+  * Education
+  * Projects
+* Live Markdown preview
+* One-click PDF export (html2pdf.js)
+* Stores structured data with Markdown fallback
+
+### ✉️ AI Cover Letter Generator
+
+* Generates tailored cover letters from job descriptions
+* Optimized for role-specific applications
+
+### 🎤 AI Mock Interview Preparation
+
+* Technical and behavioral interview simulations
+* AI-based performance analysis
+* Personalized improvement suggestions
+* Historical interview attempt tracking
+
+### 🌙 UI & Experience
+
+* Dark mode (default)
+* Fully responsive design
+* Modern component system (shadcn/ui)
+
+---
+
+## 🛠 Tech Stack
+
+| Layer           | Technology Used                   |
+| --------------- | --------------------------------- |
+| Framework       | Next.js 15 (App Router)           |
+| Language        | TypeScript                        |
+| Authentication  | Clerk                             |
+| Database        | Prisma + PostgreSQL               |
+| AI Integration  | Google Generative AI (Gemini)     |
+| UI System       | shadcn/ui + Tailwind CSS + Lucide |
+| Form Handling   | React Hook Form + Zod             |
+| Markdown Editor | @uiw/react-md-editor              |
+| PDF Export      | html2pdf.js                       |
+| Background Jobs | Inngest                           |
+| Deployment      | Vercel                            |
+
+---
+
+## 📸 Screenshots
+
+> Add screenshots of the following sections:
+
+* Dashboard
+* Resume Builder
+* Cover Letter Generator
+* Interview Preparation
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/mentorai.git
+cd mentorai
+npm install
+```
+
+---
+
+### 2️⃣ Configure Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
+CLERK_SECRET_KEY=sk_...
+
+# Database
+DATABASE_URL="postgresql://user:pass@localhost:5432/mentorai"
+
+# Google Gemini AI
+GOOGLE_GENERATIVE_AI_API_KEY=AIza...
+
+# Optional: Inngest (Background AI jobs)
+INNGEST_EVENT_KEY=...
+INNGEST_SIGNING_KEY=...
+```
+
+---
+
+### 3️⃣ Database Setup
+
+```bash
+npx prisma generate
+npx prisma db push   # or: npx prisma migrate dev
+```
+
+---
+
+### 4️⃣ Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser at:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📂 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+ ├── (main)/
+ │   ├── dashboard/
+ │   ├── resume/
+ │   ├── ai-cover-letter/
+ │   ├── interview/
+ │   └── onboarding/
+ ├── layout.tsx
+ └── page.tsx
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+components/
+ ├── header.tsx
+ ├── resume-builder/
+ └── ...
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+lib/
+ ├── actions/
+ ├── checkUser.ts
+ └── helper.ts
 
-## Deploy on Vercel
+prisma/
+ └── schema.prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+actions/
+package.json
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔧 Current Status
+
+### ✅ Strengths
+
+* Modern Next.js 15 + React 19 architecture
+* Proper use of Server Components and Server Actions
+* Clean and structured Prisma schema
+* Comprehensive Zod validation
+* Accessible and responsive UI
+
+### ⚠️ Recommended Improvements
+
+* Replace outdated logo and alt text references
+* Add a proper `logo.png`
+* Provide a `.env.example` file
+* Add a seed script for demo Industry Insight data
+* Implement rate limiting for AI requests
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome.
+For significant changes, please open an issue first to discuss the proposal.
+
+---
+
+## 📄 License
+
+MIT License
+© Abdullah Ali
+
+---
+
+**If you find this project helpful, consider giving it a ⭐ on GitHub.**

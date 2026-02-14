@@ -52,7 +52,7 @@ export default function CoverLetterList({ coverLetters }) {
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 px-4 sm:px-0">
             {coverLetters.map((letter) => (
                 <Card key={letter.id} className="group relative ">
                     <CardHeader>

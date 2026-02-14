@@ -60,9 +60,7 @@ export default function ResumeBuilder({ initialContent }) {
   // Watch form fields for preview updates
   const formValues = watch();
 
-  // useEffect(() => {
-  //   if (initialContent) setActiveTab("preview");
-  // }, [initialContent]);
+
   useEffect(() => {
     if (initialContent) {
       // If you already have markdown-only resume, keep it for now
@@ -111,10 +109,6 @@ export default function ResumeBuilder({ initialContent }) {
     const expMd = entriesToMarkdown(experience, "Work Experience");
     const eduMd = entriesToMarkdown(education, "Education");
     const projMd = entriesToMarkdown(projects, "Projects");
-
-    // console.log("experience markdown:", expMd);
-    // console.log("education markdown:  ", eduMd);
-    // console.log("projects markdown:   ", projMd);
 
     return [
       getContactMarkdown(),
@@ -168,9 +162,9 @@ export default function ResumeBuilder({ initialContent }) {
   };
 
   return (
-    <div data-color-mode="light" className="space-y-4">
+    <div data-color-mode="light" className="space-y-4 px-4 sm:px-0">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
+        <h1 className="font-bold gradient-title text-4xl md:text-6xl">
           Resume Builder
         </h1>
         <div className="space-x-2">
