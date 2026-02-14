@@ -1,4 +1,4 @@
-# MentorAI 🚀
+# MentorAI -AI Career Coach 
 
 **Your Personal AI Career Coach**
 Build professional resumes, generate tailored cover letters, gain industry insights, and practice AI-powered mock interviews — all in one modern web application.
@@ -75,23 +75,12 @@ Build professional resumes, generate tailored cover letters, gain industry insig
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots of the following sections:
-
-* Dashboard
-* Resume Builder
-* Cover Letter Generator
-* Interview Preparation
-
----
-
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/mentorai.git
+git clone https://github.com/AbdullahAli2005/MentorAI.git
 cd mentorai
 npm install
 ```
@@ -185,13 +174,6 @@ package.json
 * Comprehensive Zod validation
 * Accessible and responsive UI
 
-### ⚠️ Recommended Improvements
-
-* Replace outdated logo and alt text references
-* Add a proper `logo.png`
-* Provide a `.env.example` file
-* Add a seed script for demo Industry Insight data
-* Implement rate limiting for AI requests
 
 ---
 
