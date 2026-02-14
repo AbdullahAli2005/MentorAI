@@ -35,7 +35,7 @@ const HeroSection = () => {
             <br />
             Professional Success
           </h1>
-          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl">
+          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl  px-4 sm:px-0">
             Advance your career with personalized guidance, interview prep, and
             AI-powered tools for job success.
           </p>
@@ -48,7 +48,7 @@ const HeroSection = () => {
           </Link>
           
         </div>
-        <div className="hero-image-wrapper mt-5 md:mt-0">
+        <div className="hero-image-wrapper mt-5 md:mt-0  px-4 sm:px-0">
           <div ref={imageRef} className="hero-image">
             <Image
               src="/banner.png"
